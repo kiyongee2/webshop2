@@ -29,9 +29,8 @@
 			<div class="form-group row">
 				<label class="col-sm-2">성명</label>
 				<div class="col-sm-5">
-					<input type="text" name="name" value="${names}" class="form-control">
+					<input type="text" name="name" value="${name}" class="form-control">
 				</div>
-				<c:out value="${names }" />
 			</div>
 			<div class="form-group row">
 				<label class="col-sm-2">제목</label>

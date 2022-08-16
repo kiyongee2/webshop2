@@ -94,9 +94,21 @@
 					<div class="form-group row">
 						<label class="col-sm-2">상태</label>
 						<div class="col-sm-5">
-							<input type="radio" name="condition" value="New ">신규 제품
-							<input type="radio" name="condition" value="Old ">중고 제품
-							<input type="radio" name="condition" value="Refurbished ">재생 제품
+							<% if(rs.getString("p_condition") != null){ %>
+								<% if(rs.getString("p_condition").equals("New")){ %>
+								<input type="radio" name="condition" value="New" checked>신규 제품
+								<input type="radio" name="condition" value="Old">중고 제품
+								<input type="radio" name="condition" value="Refurbished">재생 제품
+								<% }else if(rs.getString("p_condition").equals("Old")){ %>
+								<input type="radio" name="condition" value="New">신규 제품
+								<input type="radio" name="condition" value="Old" checked>중고 제품
+								<input type="radio" name="condition" value="Refurbished">재생 제품
+								<% }else if(rs.getString("p_condition").equals("Refurbished")){ %>
+								<input type="radio" name="condition" value="New">신규 제품
+								<input type="radio" name="condition" value="Old" checked>중고 제품
+								<input type="radio" name="condition" value="Refurbished" checked>재생 제품
+								<% } %>
+							<%} %>
 						</div>
 					</div>
 					<div class="form-group row">

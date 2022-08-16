@@ -7,7 +7,8 @@ import java.sql.ResultSet;
 
 public class JDBCUtil {
 	private static String driverClass = "com.mysql.cj.jdbc.Driver";
-	private static String url = "jdbc:mysql://localhost:3306/jspdb?useUnicode=true&serverTimezone=Asia/Seoul";
+	private static String url = "jdbc:mysql://localhost:3306/jspdb?"
+			+ "useUnicode=true&serverTimezone=Asia/Seoul";
 	private static String username = "root";
 	private static String password = "12345";
 	

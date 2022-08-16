@@ -38,7 +38,6 @@ public class BoardController extends HttpServlet {
 		
 		String nextPage = null;  //jsp 페이지
 		HttpSession session = request.getSession(); //세션 객체 생성
-		PrintWriter out = response.getWriter();     //쓰기 객체 생성
 		
 		BoardDAO dao = BoardDAO.getInstance();  //dao 객체 생성
 		
@@ -49,7 +48,7 @@ public class BoardController extends HttpServlet {
 		}else if(command.equals("/boardWriteForm.do")) { //새글 폼 페이지
 			String id = (String)session.getAttribute("sessionId");
 			String name = dao.getNameByLogin(id);
-			request.setAttribute("names", name);
+			request.setAttribute("name", name);
 			nextPage = "/board/boardWriteForm.jsp";
 		}else if(command.equals("/boardWriteAction.do")) {
 			//자료 전달
@@ -102,5 +101,4 @@ public class BoardController extends HttpServlet {
 		RequestDispatcher dispatcher = request.getRequestDispatcher(nextPage);
 		dispatcher.forward(request, response);
 	}
-
 }
