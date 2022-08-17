@@ -4,13 +4,13 @@ create table board(
 	name varchar(20) not null,
 	subject varchar(100) not null,
 	content text not null,
-	write_date timestamp default now(),
+	write_date varchar(30),
 	hit int,
 	id varchar(10) not null,
 	constraint fk_member_board foreign key(id) 
     references member(id) on delete cascade
 );
 
-insert into board values (1, '구름이', '제목입니다.', '글 내용입니다.', default, 0, 'cloud');
+insert into board values (1, '구름이', '제목입니다.', '글 내용입니다.', '2022-08-15', 0, 'cloud');
 
 select * from board;

@@ -1,6 +1,7 @@
 package mvc.model;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -28,14 +29,15 @@ public class BoardDAO {
 	//새글 추가
 	public void insertBoard(Board board) {
 		conn = JDBCUtil.getConnention();
-		String sql = "INSERT INTO board(name, subject, content, id)"
-				+ " VALUES (?, ?, ?, ?)";
+		String sql = "INSERT INTO board(name, subject, content, write_date, id)"
+				+ " VALUES (?, ?, ?, ?, ?)";
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, board.getName());
 			pstmt.setString(2, board.getSubject());
 			pstmt.setString(3, board.getContent());
-			pstmt.setString(4, board.getId());
+			pstmt.setString(4, board.getWriteDate());
+			pstmt.setString(5, board.getId());
 			pstmt.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -59,7 +61,7 @@ public class BoardDAO {
 				board.setName(rs.getString("name"));
 				board.setSubject(rs.getString("subject"));
 				board.setContent(rs.getString("content"));
-				board.setWriteDate(rs.getDate("write_date"));
+				board.setWriteDate(rs.getString("write_date"));
 				board.setHit(rs.getInt("hit"));
 				board.setId(rs.getString("id"));
 				boardList.add(board);
@@ -87,7 +89,7 @@ public class BoardDAO {
 				board.setName(rs.getString("name"));
 				board.setSubject(rs.getString("subject"));
 				board.setContent(rs.getString("content"));
-				board.setWriteDate(rs.getDate("write_date"));
+				board.setWriteDate(rs.getString("write_date"));
 				board.setHit(rs.getInt("hit"));
 				board.setId(rs.getString("id"));
 			}

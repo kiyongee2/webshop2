@@ -8,6 +8,22 @@
 <title>글쓰기</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" 
 	  integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+<script>
+	function checkForm(){
+		let form = document.newWrite;
+		
+		if(!form.subject.value){
+			alert("제목을 입력하세요");
+			form.id.focus();
+			return false;
+		}
+		if(!form.content.value){
+			alert("내용을 입력하세요");
+			form.id.focus();
+			return false;
+		}
+	}
+</script>
 </head>
 <body>
 	<c:if test="${empty sessionId}">
@@ -16,7 +32,6 @@
 			location.href="/member/loginMember.jsp";
 		</script>
 	</c:if>
-	
 	<jsp:include page="/menu.jsp" />
 	<div class = "jumbotron">
 		<div class = "container">
@@ -26,6 +41,7 @@
 	<div class="container">
 		<form action="/boardWriteAction.do" method="post" name="newWrite"
 		      onsubmit="return checkForm()">
+		      <input type="hidden" name="id" value="${sessionId}">
 			<div class="form-group row">
 				<label class="col-sm-2">성명</label>
 				<div class="col-sm-5">

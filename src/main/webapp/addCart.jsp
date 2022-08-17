@@ -7,10 +7,6 @@
     pageEncoding="UTF-8"%>
 <%
 	String id = request.getParameter("id");
-	if(id==null || id.trim().equals("")){ //해당 아이디가 없으면
-		response.sendRedirect("products.jsp");
-		return;
-	}
 
 	ProductRepository dao = ProductRepository.getInstance();
 

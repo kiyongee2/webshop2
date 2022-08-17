@@ -1,13 +1,11 @@
 package mvc.model;
 
-import java.util.Date;
-
 public class Board {
 	private int num;
 	private String name;
 	private String subject;
 	private String content;
-	private Date writeDate;
+	private String writeDate;
 	private int hit;
 	private String id;
 	
@@ -35,10 +33,10 @@ public class Board {
 	public void setContent(String content) {
 		this.content = content;
 	}
-	public Date getWriteDate() {
+	public String getWriteDate() {
 		return writeDate;
 	}
-	public void setWriteDate(Date writeDate) {
+	public void setWriteDate(String writeDate) {
 		this.writeDate = writeDate;
 	}
 	public int getHit() {

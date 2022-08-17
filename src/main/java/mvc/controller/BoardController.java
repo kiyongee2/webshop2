@@ -1,11 +1,11 @@
 package mvc.controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -41,21 +41,26 @@ public class BoardController extends HttpServlet {
 		
 		BoardDAO dao = BoardDAO.getInstance();  //dao 객체 생성
 		
-		if(command.equals("/boardListAction.do")) {
+		if(command.equals("/boardListAction.do")) {  //게시글 목록 요청
 			ArrayList<Board> boardList = dao.getBoardList();
 			request.setAttribute("boardList", boardList);
 			nextPage = "/board/boardList.jsp";
 		}else if(command.equals("/boardWriteForm.do")) { //새글 폼 페이지
 			String id = (String)session.getAttribute("sessionId");
-			String name = dao.getNameByLogin(id);
-			request.setAttribute("name", name);
+			String name = dao.getNameByLogin(id);   //인증된 이름 함수 호출
+			request.setAttribute("name", name);     //model - "name" 생성
 			nextPage = "/board/boardWriteForm.jsp";
-		}else if(command.equals("/boardWriteAction.do")) {
+		}else if(command.equals("/boardWriteAction.do")) {  //글쓰기 처리 요청
 			//자료 전달
 			String id = request.getParameter("id");
 			String name = request.getParameter("name");
 			String subject = request.getParameter("subject");
 			String content = request.getParameter("content");
+			
+			//현재 시간 포맷 설정
+			SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd(HH:mm:ss)");
+			Date now = new Date();
+			String writeDate = formatter.format(now);
 			
 			//Board 객체 생성
 			Board board = new Board();
@@ -63,6 +68,7 @@ public class BoardController extends HttpServlet {
 			board.setName(name);
 			board.setSubject(subject);
 			board.setContent(content);
+			board.setWriteDate(writeDate);
 			
 			//글쓰기 처리
 			dao.insertBoard(board);
